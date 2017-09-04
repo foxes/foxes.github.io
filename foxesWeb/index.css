@@ -26,6 +26,22 @@ h1, h2, h3, h4, h5, h6 {
 	/*font-family: 'Muli';*/
 }
 
+img {
+	max-width: 60%;
+	height: auto;
+	display: block;
+
+	position: absolute;
+
+	margin: auto;
+}
+
+.item {
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
 #birds {
 	max-height: 150vh;
 	max-width: 150vw;
