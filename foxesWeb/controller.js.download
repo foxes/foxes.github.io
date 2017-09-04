@@ -1,0 +1,63 @@
+phil.config(function($compileProvider){
+	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|chrome-extension):/);
+});
+
+phil.run(function ($state,$rootScope) {
+	$rootScope.$state = $state;
+})
+
+phil.controller('MainCtrl', ['$scope', '$state', '$window', '$stateParams', function($scope, $state, $window, $stateParams) {
+	$scope.uiRouterState = $state;
+
+	$('.content').height($('.content').width());
+	var windowWidth = angular.element($window);
+	windowWidth.bind('resize', function () {
+		$('.content').height($('.content').width());
+	});
+
+	$scope.viewPortfolio = function(name) {
+		console.log($('#' + name));
+	}
+
+	if ($state.current.name === 'portfolio-details') {
+		var name = $stateParams.id;
+
+		for (var i = 0; i < $scope.portfolios.length; i++) {
+			if ($scope.portfolios[i].id === name) {
+				$scope.portfolio = $scope.portfolios[i];
+				break;
+			}
+		}
+
+	}
+
+
+	$scope.portfolios = [
+		{
+			id: "hubble",
+			name: "Hubble"
+		},
+		{
+			id: "glucoaid",
+			name: "GlucoAid"
+		},
+		{
+			id: "campsite",
+			name: "Campsite"
+		},
+		{
+			id: "kcltech",
+			name: "KCL Tech"
+		},
+		{
+			id: "appilepsy",
+			name: "Appilepsy"
+		},
+		{
+			id: "feast",
+			name: "Feast"
+		}
+	];
+
+	$scope.portfolio;
+}]);
